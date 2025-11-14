@@ -1,0 +1,59 @@
+//
+//  SceneDelegate.swift
+//  TimelessTunesApp
+//
+//  Created by Ярослав Кочкин on 13.11.2025.
+//
+
+import UIKit
+
+class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+
+	var window: UIWindow?
+
+
+	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+		guard let windowScene = (scene as? UIWindowScene) else { return }
+
+		window = UIWindow(windowScene: windowScene)
+		let router = HomeRouter()
+		let viewController = HomeAssembler.assembly(dependencies: .init(router: router))
+		window?.rootViewController = setupNavigation(viewController)
+		window?.makeKeyAndVisible()
+	}
+
+	func sceneDidEnterBackground(_ scene: UIScene) {
+		(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
+	}
+
+
+}
+
+private extension SceneDelegate {
+	
+	func setupNavigation(
+		_ viewController: UIViewController
+	) -> UINavigationController {
+		let navController = UINavigationController(rootViewController: viewController)
+		navController.navigationBar.prefersLargeTitles = true
+		
+		let appearance = UINavigationBarAppearance()
+		appearance.configureWithOpaqueBackground()
+		appearance.backgroundColor = UIColor(resource: .background)
+
+		appearance.titleTextAttributes = [
+			.foregroundColor: UIColor(resource: .textPrimary),
+			.font: UIFont.systemFont(ofSize: 18, weight: .bold)
+		]
+		
+		appearance.largeTitleTextAttributes = [
+			.foregroundColor: UIColor(resource: .textPrimary),
+			.font: UIFont.systemFont(ofSize: 34, weight: .bold)
+		]
+		
+		navController.navigationBar.standardAppearance = appearance
+		navController.navigationBar.scrollEdgeAppearance = appearance
+		
+		return navController
+	}
+}
