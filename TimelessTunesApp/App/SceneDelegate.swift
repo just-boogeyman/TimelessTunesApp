@@ -17,7 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 		window = UIWindow(windowScene: windowScene)
 		let router = HomeRouter()
-		let viewController = HomeAssembler.assembly(dependencies: .init(router: router))
+		let networkService = NetworkService()
+
+		let viewController = HomeAssembler.assembly(dependencies: .init(networkService: networkService, router: router))
 		window?.rootViewController = setupNavigation(viewController)
 		window?.makeKeyAndVisible()
 	}
