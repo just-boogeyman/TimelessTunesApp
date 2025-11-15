@@ -14,6 +14,7 @@ final class HomeViewController: UIViewController, IHomeViewController {
 	private let contentView: IHomeContentView
 	private let presenter: IHomePresenter
 	private let searchController = UISearchController(searchResultsController: nil)
+	private var timer: Timer?
 	
 	init(presenter: IHomePresenter) {
 		self.contentView = HomeContentView()
@@ -69,6 +70,9 @@ extension HomeViewController: UISearchResultsUpdating {
 
 extension HomeViewController: UISearchBarDelegate {
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-		print(searchText)
+		timer?.invalidate()
+		timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [weak self] _ in
+			self?.presenter.userDidEnterSearch(searchText: searchText)
+		}
 	}
 }

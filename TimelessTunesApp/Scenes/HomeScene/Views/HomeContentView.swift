@@ -8,11 +8,13 @@
 import UIKit
 import SnapKit
 
-protocol IHomeContentView: UIView {}
+protocol IHomeContentView: UIView {
+	func displayData(viewModel: [HomeViewModel])
+}
 
 final class HomeContentView: UIView {
 	
-	private var tracks: [TrackModel] = []
+	private var viewModel: [HomeViewModel] = []
 	
 	private let reuseIdentifier = "listReuseIdentifier"
 	private var collectionView: UICollectionView!
@@ -72,7 +74,7 @@ private extension HomeContentView {
 
 extension HomeContentView: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		10
+		viewModel.count
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -82,7 +84,8 @@ extension HomeContentView: UICollectionViewDataSource {
 		) as? HomeCollectionViewCell else {
 			return UICollectionViewCell()
 		}
-		cell.configure()
+		let cellViewModel = viewModel[indexPath.row]
+		cell.configure(viewModel: cellViewModel)
 		return cell
 	}
 	
@@ -94,5 +97,10 @@ extension HomeContentView: UICollectionViewDelegate {
 }
 
 extension HomeContentView: IHomeContentView {
+	func displayData(viewModel: [HomeViewModel]) {
+		self.viewModel = viewModel
+		collectionView.reloadData()
+	}
+	
 	
 }

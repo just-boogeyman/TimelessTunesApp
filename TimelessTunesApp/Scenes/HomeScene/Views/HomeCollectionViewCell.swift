@@ -21,9 +21,9 @@ final class HomeCollectionViewCell: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
-	func configure() {
+	func configure(viewModel: HomeViewModel) {
 		imageView.image = UIImage(resource: .image1)
-		executorLabel.text = "AC/DC"
+		executorLabel.text = viewModel.trackName
 	}
 	
 }
