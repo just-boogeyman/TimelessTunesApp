@@ -8,7 +8,13 @@
 import Foundation
 
 struct HomeViewModel {
-	let iconUrlString: String?
-	let trackName: String
-	let artistName: String
+	struct Cell: ITrackCellViewModel {
+		var iconUrlString: String?
+		var trackName: String
+		var artistName: String
+		var collectionName: String
+		let previewUrl: String?
+	}
+	
+	let cells: [Cell]
 }
