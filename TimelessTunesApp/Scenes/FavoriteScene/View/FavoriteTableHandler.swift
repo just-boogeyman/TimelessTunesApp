@@ -3,11 +3,11 @@ import UIKit
 
 final class FavoriteTableHandler: NSObject {
 	
-	private var items: [UUID] = []
+	private var items: [FavoriteEntity] = []
 	var nextHandler: ((Int) -> Void)?
 	var deletedHandler: ((Int) -> Void)?
 	
-	func update(_ items: [UUID]) {
+	func update(_ items: [FavoriteEntity]) {
 		self.items = items
 	}
 }
@@ -20,10 +20,12 @@ extension FavoriteTableHandler: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = UITableViewCell()
 		var config = cell.defaultContentConfiguration()
-		config.text = items[indexPath.row].uuidString
-		config.textProperties.color = .white
+		config.text = items[indexPath.row].artistName
+		config.textProperties.color = .black
+		config.secondaryText = items[indexPath.row].trackName
+		config.secondaryTextProperties.color = .darkGray
 		cell.contentConfiguration = config
-		cell.backgroundColor = .darkGray
+		cell.backgroundColor = .white
 		cell.selectionStyle = .none
 		return cell
 	}
@@ -41,9 +43,9 @@ extension FavoriteTableHandler: UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 		if editingStyle == .delete {
-			self.deletedHandler?(indexPath.row)
 			items.remove(at: indexPath.row)
 			tableView.deleteRows(at: [indexPath], with: .automatic)
+			self.deletedHandler?(indexPath.row)
 		}
 	}
 	

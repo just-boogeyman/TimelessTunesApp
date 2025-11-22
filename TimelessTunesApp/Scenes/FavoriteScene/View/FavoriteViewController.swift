@@ -1,12 +1,15 @@
 
 import UIKit
 
-protocol IFavoriteViewController: AnyObject {}
+protocol IFavoriteViewController: AnyObject {
+	var handlerUpdate: (() -> Void)? { get set }
+}
 
 final class FavoriteViewController: UIViewController, IFavoriteViewController {
 
 	private var contentView: IFavoriteContentView
 	private let presenter: IFavoritePresenter
+	var handlerUpdate: (() -> Void)?
 	
 	init(presenter: IFavoritePresenter) {
 		self.contentView = FavoriteContentView()
@@ -25,18 +28,18 @@ final class FavoriteViewController: UIViewController, IFavoriteViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = .systemCyan
-		setupNavigationBar()
+		setupView()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		navigationController?.setNavigationBarHidden(true, animated: animated)
+		handlerUpdate?()
 	}
 }
 
 private extension FavoriteViewController {
-	func setupNavigationBar() {
+	func setupView() {
 		navigationItem.title = "Favorite"
+		view.backgroundColor = .white
 	 }
 }
