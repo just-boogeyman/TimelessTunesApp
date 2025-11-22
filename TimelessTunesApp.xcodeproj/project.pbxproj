@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		048A4E312ED01C7B00E3E03C /* SpringAnimation in Frameworks */ = {isa = PBXBuildFile; productRef = 048A4E302ED01C7B00E3E03C /* SpringAnimation */; };
+		048FB3712ECA1E1F00503D8E /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 048FB3702ECA1E1F00503D8E /* Kingfisher */; };
+		04BD70692EC6FC4300183AE1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 04BD70682EC6FC4300183AE1 /* SnapKit */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		044BFE342EC5EB520054EC92 /* TimelessTunesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimelessTunesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +42,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				048A4E312ED01C7B00E3E03C /* SpringAnimation in Frameworks */,
+				048FB3712ECA1E1F00503D8E /* Kingfisher in Frameworks */,
+				04BD70692EC6FC4300183AE1 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +87,9 @@
 			);
 			name = TimelessTunesApp;
 			packageProductDependencies = (
+				04BD70682EC6FC4300183AE1 /* SnapKit */,
+				048FB3702ECA1E1F00503D8E /* Kingfisher */,
+				048A4E302ED01C7B00E3E03C /* SpringAnimation */,
 			);
 			productName = TimelessTunesApp;
 			productReference = 044BFE342EC5EB520054EC92 /* TimelessTunesApp.app */;
@@ -107,6 +119,11 @@
 			);
 			mainGroup = 044BFE2B2EC5EB520054EC92;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				04BD70672EC6FC4300183AE1 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				048FB36F2ECA1E1F00503D8E /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				048A4E2F2ED01C7B00E3E03C /* XCRemoteSwiftPackageReference "SpringAnimation" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 044BFE352EC5EB520054EC92 /* Products */;
 			projectDirPath = "";
@@ -149,7 +166,6 @@
 				INFOPLIST_FILE = TimelessTunesApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -180,7 +196,6 @@
 				INFOPLIST_FILE = TimelessTunesApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -341,6 +356,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		048A4E2F2ED01C7B00E3E03C /* XCRemoteSwiftPackageReference "SpringAnimation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LexDeBash/SpringAnimation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
+		048FB36F2ECA1E1F00503D8E /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.6.1;
+			};
+		};
+		04BD70672EC6FC4300183AE1 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		048A4E302ED01C7B00E3E03C /* SpringAnimation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 048A4E2F2ED01C7B00E3E03C /* XCRemoteSwiftPackageReference "SpringAnimation" */;
+			productName = SpringAnimation;
+		};
+		048FB3702ECA1E1F00503D8E /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 048FB36F2ECA1E1F00503D8E /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		04BD70682EC6FC4300183AE1 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 04BD70672EC6FC4300183AE1 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 044BFE2C2EC5EB520054EC92 /* Project object */;
 }

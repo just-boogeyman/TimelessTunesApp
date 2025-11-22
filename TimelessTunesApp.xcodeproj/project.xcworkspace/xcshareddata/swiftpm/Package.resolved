@@ -1,0 +1,33 @@
+{
+  "originHash" : "b4b5e5268507ea01fdff8efa14d74f3d561dedc8d806745afdd26473c4754208",
+  "pins" : [
+    {
+      "identity" : "kingfisher",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/onevcat/Kingfisher",
+      "state" : {
+        "revision" : "4d75de347da985a70c63af4d799ed482021f6733",
+        "version" : "8.6.1"
+      }
+    },
+    {
+      "identity" : "snapkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SnapKit/SnapKit",
+      "state" : {
+        "revision" : "2842e6e84e82eb9a8dac0100ca90d9444b0307f4",
+        "version" : "5.7.1"
+      }
+    },
+    {
+      "identity" : "springanimation",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LexDeBash/SpringAnimation",
+      "state" : {
+        "revision" : "93c90034c94d0374f634d7f29950655933b9045a",
+        "version" : "0.3.0"
+      }
+    }
+  ],
+  "version" : 3
+}
