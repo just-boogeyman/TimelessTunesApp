@@ -1,61 +1,56 @@
-//
-//  SceneDelegate.swift
-//  TimelessTunesApp
-//
-//  Created by Ярослав Кочкин on 13.11.2025.
-//
 
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	var window: UIWindow?
-
+	private let storageManager = CoreDataManager()
+	private let allTabBarItems = TabBarItem.allTabBarItems
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 
 		window = UIWindow(windowScene: windowScene)
-		let router = HomeRouter()
-		let networkService = NetworkService()
+		
+		let tabBarController = MusicTabBarController()
+		
+		tabBarController.viewControllers?.enumerated().forEach{ index, vc in
+			guard let navVC = vc as? UINavigationController else { return }
+			pushViewController(index: index, controller: navVC)
+		}
+		
+		window?.rootViewController = UINavigationController(rootViewController: tabBarController)
 
-		let viewController = HomeAssembler.assembly(dependencies: .init(networkService: networkService, router: router))
-		window?.rootViewController = setupNavigation(viewController)
 		window?.makeKeyAndVisible()
 	}
-
-	func sceneDidEnterBackground(_ scene: UIScene) {
-		(UIApplication.shared.delegate as? AppDelegate)?.saveContext()
-	}
-
-
 }
 
 private extension SceneDelegate {
-	
-	func setupNavigation(
-		_ viewController: UIViewController
-	) -> UINavigationController {
-		let navController = UINavigationController(rootViewController: viewController)
-		navController.navigationBar.prefersLargeTitles = true
-		
-		let appearance = UINavigationBarAppearance()
-		appearance.configureWithOpaqueBackground()
-		appearance.backgroundColor = UIColor(resource: .background)
+	func pushViewController(index: Int, controller: UINavigationController) {
 
-		appearance.titleTextAttributes = [
-			.foregroundColor: UIColor(resource: .textPrimary),
-			.font: UIFont.systemFont(ofSize: 18, weight: .bold)
-		]
-		
-		appearance.largeTitleTextAttributes = [
-			.foregroundColor: UIColor(resource: .textPrimary),
-			.font: UIFont.systemFont(ofSize: 34, weight: .bold)
-		]
-		
-		navController.navigationBar.standardAppearance = appearance
-		navController.navigationBar.scrollEdgeAppearance = appearance
-		
-		return navController
+		switch allTabBarItems[index] {
+		case .homeVC:
+			let router = HomeRouter()
+			let networkService = NetworkService()
+			let viewController = HomeAssembly.build(
+				dependencies: .init(
+					networkService: networkService,
+					storageManager: storageManager,
+					router: router
+				)
+			)
+			router.setCurrentViewController(viewController: viewController)
+			controller.pushViewController(viewController, animated: false)
+		case .favoriteVC:
+			let router = FavoriteRouter()
+			let viewController = FavoriteAssembly.build(
+				dependencies: .init(
+					storageManager: storageManager,
+					router: router
+				)
+			)
+			router.setCurrentViewController(viewController: viewController)
+			controller.pushViewController(viewController, animated: false)
+		}
 	}
 }
