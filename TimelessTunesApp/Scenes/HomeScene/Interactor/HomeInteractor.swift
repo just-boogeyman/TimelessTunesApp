@@ -28,7 +28,6 @@ final class HomeInteractor {
 extension HomeInteractor: IHomeInteractorInput {
 	func loadHistoryTracks() {
 		let entities = storageManager.loadTracks()
-		print(entities)
 		let tracks = entities.map {
 			MediaItem(
 				id: Int($0.id),
