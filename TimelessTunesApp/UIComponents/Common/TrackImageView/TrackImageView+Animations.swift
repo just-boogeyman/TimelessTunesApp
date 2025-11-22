@@ -7,8 +7,8 @@ extension TrackImageView {
 	func animationNextPrevious(_ nextPrevious: NextPrevious) {
 		self.animation = nextPrevious.animation
 		self.force = Constants.animationForce
-		self.duration = CGFloat(Constants.animationDuration)
-		self.delay = CGFloat(Constants.animationDelay)
+		self.duration = Constants.animationDuration
+		self.delay = Constants.animationDelay
 		self.animate()
 	}
 	

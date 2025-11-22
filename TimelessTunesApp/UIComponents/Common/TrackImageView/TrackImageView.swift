@@ -7,11 +7,11 @@ final class TrackImageView: SpringImageView {
 	enum Constants {
 		static let cornerRadius: CGFloat = 12
 		static let targetImageSize = CGSize(width: 300, height: 300)
-		static let fadeDuration: TimeInterval = 1.0
+		static let fadeDuration: CGFloat = 1.0
 
 		static let animationForce: CGFloat = 1
-		static let animationDuration: TimeInterval = 1.0
-		static let animationDelay: TimeInterval = 0.3
+		static let animationDuration: CGFloat = 1.0
+		static let animationDelay: CGFloat = 0.3
 		static let springDamping: CGFloat = 0.5
 		static let springVelocity: CGFloat = 1.0
 		static let animationOptions: UIView.AnimationOptions = .curveEaseInOut
