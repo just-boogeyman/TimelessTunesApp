@@ -18,16 +18,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 			guard let navVC = vc as? UINavigationController else { return }
 			pushViewController(index: index, controller: navVC)
 		}
-		
 		window?.rootViewController = UINavigationController(rootViewController: tabBarController)
-
 		window?.makeKeyAndVisible()
 	}
 }
 
 private extension SceneDelegate {
 	func pushViewController(index: Int, controller: UINavigationController) {
-
 		switch allTabBarItems[index] {
 		case .homeVC:
 			let router = HomeRouter()

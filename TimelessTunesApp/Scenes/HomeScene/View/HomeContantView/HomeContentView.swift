@@ -11,10 +11,16 @@ final class HomeContentView: UIView {
 	
 	var touchHandler: ((Int) -> Void)?
 
-	private var viewModel = HomeViewModel(cells: [])
-	private let reuseIdentifier = "listReuseIdentifier"
+	private var adapter = HomeCollectionAdapter()
 	private var collectionView: UICollectionView!
-	private let emptyLabel = UILabel()
+	private let emptyLabel = UIFactory.shared.makeLabel(
+		font: .systemFont(
+			ofSize: Constants.emptyLabelFontSize,
+			weight: .medium
+		),
+		textColor: .gray,
+		numberOfLines: Constants.numberOfLines
+	)
 	
 	override init(frame: CGRect) {
 		super.init(frame: frame)
@@ -36,78 +42,63 @@ private extension HomeContentView {
 	
 	func setupCollectionView() {
 		collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-		collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+		collectionView.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: "listReuseIdentifier")
 		collectionView.backgroundColor = UIColor(resource: .background)
-		collectionView.dataSource = self
-		collectionView.delegate = self
+		collectionView.dataSource = adapter
+		collectionView.delegate = adapter
+		adapter.onTap = { [weak self] index in
+			self?.touchHandler?(index)
+		}
 		addSubview(collectionView)
-
 		collectionView.snp.makeConstraints { make in
 			make.edges.equalTo(safeAreaLayoutGuide)
 		}
 	}
-	
+
 	func createLayout() -> UICollectionViewLayout {
 		let itemSize = NSCollectionLayoutSize(
-			widthDimension: .fractionalWidth(0.5),
-			heightDimension: .absolute(200)
+			widthDimension: .fractionalWidth(Constants.itemFractionalWidth),
+			heightDimension: .absolute(Constants.itemAbsoluteHeight)
 		)
 		let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
 		let groupSize = NSCollectionLayoutSize(
 			widthDimension: .fractionalWidth(1),
-			heightDimension: .absolute(220)
+			heightDimension: .absolute(Constants.groupAbsoluteHeight)
 		)
 		let group = NSCollectionLayoutGroup.horizontal(
 			layoutSize: groupSize,
 			subitems: [item]
 		)
-		group.interItemSpacing = .fixed(25)
+		group.interItemSpacing = .fixed(Constants.interItemSpacing)
+
 		let section = NSCollectionLayoutSection(group: group)
-		section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 24, bottom: 10, trailing: 24)
+		section.contentInsets = NSDirectionalEdgeInsets(
+			top: Constants.sectionInsetTop,
+			leading: Constants.sectionInsetHorizontal,
+			bottom: Constants.sectionInsetBottom,
+			trailing: Constants.sectionInsetHorizontal
+		)
+
 		return UICollectionViewCompositionalLayout(section: section)
 	}
 	
 	func setupLabel() {
-		emptyLabel.text = "Найдите свой лучший трек"
-		emptyLabel.font = .systemFont(ofSize: 18, weight: .medium)
-		emptyLabel.textColor = .gray
+		emptyLabel.text = Constants.emptyLabelText
 		emptyLabel.textAlignment = .center
 		emptyLabel.isHidden = false
 		addSubview(emptyLabel)
+		
 		emptyLabel.snp.makeConstraints { make in
 			make.center.equalToSuperview()
 		}
 	}
 }
 
-extension HomeContentView: UICollectionViewDataSource {
-	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		viewModel.cells.count
-	}
-	
-	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		guard let cell = collectionView.dequeueReusableCell(
-			withReuseIdentifier: reuseIdentifier,
-			for: indexPath
-		) as? HomeCollectionViewCell else {
-			return UICollectionViewCell()
-		}
-		let cellViewModel = viewModel.cells[indexPath.row]
-		cell.configure(viewModel: cellViewModel)
-		return cell
-	}
-	
-}
-
-extension HomeContentView: UICollectionViewDelegate {
-	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		touchHandler?(indexPath.row)
-	}
-}
-
 extension HomeContentView: IHomeContentView {
 	func displayData(viewModel: HomeViewModel) {
-		self.viewModel = viewModel
+		adapter.viewModel = viewModel
+		
 		emptyLabel.isHidden = !viewModel.cells.isEmpty
 		collectionView.reloadData()
 	}

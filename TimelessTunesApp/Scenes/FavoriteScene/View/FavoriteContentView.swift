@@ -4,7 +4,7 @@ import SnapKit
 protocol IFavoriteContentView: UIView {
 	var nextHandler: ((Int) -> Void)? { get set }
 	var deletedHandler: ((Int) -> Void)? { get set }
-	func render(items: [UUID])
+	func render(items: [FavoriteEntity])
 }
 
 final class FavoriteContentView: UIView {
@@ -38,7 +38,8 @@ private extension FavoriteContentView {
 	
 	func setupTableView() {
 		addSubview(tableView)
-		tableView.backgroundColor = .darkGray
+		tableView.separatorStyle = .none
+		tableView.backgroundColor = .white
 		tableView.dataSource = tableHandler
 		tableView.delegate = tableHandler
 	}
@@ -48,19 +49,10 @@ private extension FavoriteContentView {
 			make.edges.equalToSuperview()
 		}
 	}
-	
-	func configureCell(_ cell: UITableViewCell, index: UUID) {
-		var contentConfiguration = cell.defaultContentConfiguration()
-		contentConfiguration.text = "\(index)"
-		contentConfiguration.textProperties.color = .white
-		cell.contentConfiguration = contentConfiguration
-		cell.backgroundColor = .darkGray
-		cell.selectionStyle = .none
-	}
 }
 
 extension FavoriteContentView: IFavoriteContentView {
-	func render(items: [UUID]) {
+	func render(items: [FavoriteEntity]) {
 		self.tableHandler.update(items)
 		self.tableView.reloadData()
 	}
