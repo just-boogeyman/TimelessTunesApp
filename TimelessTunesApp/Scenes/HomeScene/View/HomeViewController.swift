@@ -38,7 +38,7 @@ final class HomeViewController: UIViewController, IHomeViewController {
 private extension HomeViewController {
 	
 	func setup() {
-		title = "Вечные хиты"
+		title = Constants.screenTitle
 		view.backgroundColor = .white
 		setupSearchController()
 		setupScopeBar()
@@ -49,9 +49,9 @@ private extension HomeViewController {
 		searchController.searchResultsUpdater = self
 		searchController.searchBar.delegate = self
 		searchController.obscuresBackgroundDuringPresentation = false
-		searchController.searchBar.placeholder = "Поиск"
-		searchController.searchBar.barTintColor = .white
-		searchController.searchBar.tintColor = .darkGray
+		searchController.searchBar.placeholder = Constants.searchPlaceholder
+		searchController.searchBar.barTintColor = Constants.searchBarBarTintColor
+		searchController.searchBar.tintColor = Constants.searchBarTintColor
 		searchController.searchBar.searchBarStyle = .minimal
 		
 		navigationItem.searchController = searchController
@@ -62,18 +62,27 @@ private extension HomeViewController {
 	func setupScopeBar() {
 		let scopeBarAppearance = UISearchBar.appearance()
 		scopeBarAppearance.setScopeBarButtonTitleTextAttributes(
-			[.foregroundColor: UIColor.gray], for: .normal)
-			   
-		searchController.searchBar.scopeButtonTitles = ["Поиск", "История"]
+			[.foregroundColor: Constants.scopeButtonTextColor], for: .normal)
+		
+		searchController.searchBar.scopeButtonTitles = [Constants.scopeSearch, Constants.scopeHistory]
 		searchController.searchBar.delegate = self
 	}
 	
 	func setupThemeToggleButton() {
-		let button = UIBarButtonItem(title: "Тема", style: .plain, target: self, action: #selector(toggleTheme))
+		let button = UIBarButtonItem(
+			title: Constants.themeButtonTitle,
+			style: .plain,
+			target: self,
+			action: #selector(toggleTheme)
+		)
 		navigationItem.rightBarButtonItem = button
 	}
 	
 	@objc private func toggleTheme() {
+		searchController.searchBar.tintColor =
+			(searchController.searchBar.tintColor == Constants.themeColor1)
+			? Constants.themeColor2
+			: Constants.themeColor1
 	}
 }
 
@@ -92,7 +101,7 @@ extension HomeViewController: UISearchBarDelegate {
 			searchBar.selectedScopeButtonIndex = 0
 		}
 		timer?.invalidate()
-		timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [weak self] _ in
+		timer = Timer.scheduledTimer(withTimeInterval: Constants.searchDelay, repeats: false) { [weak self] _ in
 			self?.presenter.userDidEnterSearch(searchText: searchText)
 		}
 	}
@@ -109,5 +118,24 @@ extension HomeViewController: UISearchBarDelegate {
 			searchBar.showsScopeBar = false
 			searchBar.selectedScopeButtonIndex = 0
 		}
+	}
+}
+
+private extension HomeViewController {
+	enum Constants {
+		static let screenTitle = "Вечные хиты"
+		static let searchPlaceholder = "Поиск"
+		static let themeButtonTitle = "Сменить тему"
+		
+		static let scopeSearch = "Поиск"
+		static let scopeHistory = "История"
+		
+		static let searchDelay: TimeInterval = 1.0
+		
+		static let searchBarBarTintColor = UIColor.white
+		static let searchBarTintColor = UIColor.darkGray
+		static let scopeButtonTextColor = UIColor.gray
+		static let themeColor1 = UIColor.darkText
+		static let themeColor2 = UIColor.blue
 	}
 }
