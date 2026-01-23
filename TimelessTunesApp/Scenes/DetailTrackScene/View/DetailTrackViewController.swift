@@ -25,6 +25,6 @@ final class DetailTrackViewController: UIViewController, IDetailTrackViewControl
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		view.backgroundColor = .white
+		view.backgroundColor = .red
 	}
 }
