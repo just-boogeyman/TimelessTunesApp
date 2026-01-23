@@ -27,4 +27,8 @@ final class DetailTrackViewController: UIViewController, IDetailTrackViewControl
 		super.viewDidLoad()
 		view.backgroundColor = .red
 	}
+	
+	deinit {
+		print("123")
+	}
 }
