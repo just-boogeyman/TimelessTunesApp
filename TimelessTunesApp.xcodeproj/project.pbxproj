@@ -12,8 +12,19 @@
 		04BD70692EC6FC4300183AE1 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 04BD70682EC6FC4300183AE1 /* SnapKit */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		049A3A662F6F9E5A007636E5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 044BFE2C2EC5EB520054EC92 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 044BFE332EC5EB520054EC92;
+			remoteInfo = TimelessTunesApp;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		044BFE342EC5EB520054EC92 /* TimelessTunesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimelessTunesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		049A3A622F6F9E5A007636E5 /* TimelessTunesAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TimelessTunesAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -35,6 +46,11 @@
 			path = TimelessTunesApp;
 			sourceTree = "<group>";
 		};
+		049A3A632F6F9E5A007636E5 /* TimelessTunesAppTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TimelessTunesAppTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +64,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		049A3A5F2F6F9E5A007636E5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -55,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				044BFE362EC5EB520054EC92 /* TimelessTunesApp */,
+				049A3A632F6F9E5A007636E5 /* TimelessTunesAppTests */,
 				044BFE352EC5EB520054EC92 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -63,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				044BFE342EC5EB520054EC92 /* TimelessTunesApp.app */,
+				049A3A622F6F9E5A007636E5 /* TimelessTunesAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +120,29 @@
 			productReference = 044BFE342EC5EB520054EC92 /* TimelessTunesApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		049A3A612F6F9E5A007636E5 /* TimelessTunesAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 049A3A6A2F6F9E5A007636E5 /* Build configuration list for PBXNativeTarget "TimelessTunesAppTests" */;
+			buildPhases = (
+				049A3A5E2F6F9E5A007636E5 /* Sources */,
+				049A3A5F2F6F9E5A007636E5 /* Frameworks */,
+				049A3A602F6F9E5A007636E5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				049A3A672F6F9E5A007636E5 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				049A3A632F6F9E5A007636E5 /* TimelessTunesAppTests */,
+			);
+			name = TimelessTunesAppTests;
+			packageProductDependencies = (
+			);
+			productName = TimelessTunesAppTests;
+			productReference = 049A3A622F6F9E5A007636E5 /* TimelessTunesAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -107,6 +155,10 @@
 				TargetAttributes = {
 					044BFE332EC5EB520054EC92 = {
 						CreatedOnToolsVersion = 16.4;
+					};
+					049A3A612F6F9E5A007636E5 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 044BFE332EC5EB520054EC92;
 					};
 				};
 			};
@@ -130,12 +182,20 @@
 			projectRoot = "";
 			targets = (
 				044BFE332EC5EB520054EC92 /* TimelessTunesApp */,
+				049A3A612F6F9E5A007636E5 /* TimelessTunesAppTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		044BFE322EC5EB520054EC92 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		049A3A602F6F9E5A007636E5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -152,7 +212,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		049A3A5E2F6F9E5A007636E5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		049A3A672F6F9E5A007636E5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 044BFE332EC5EB520054EC92 /* TimelessTunesApp */;
+			targetProxy = 049A3A662F6F9E5A007636E5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		044BFE4B2EC5EB550054EC92 /* Debug */ = {
@@ -334,6 +409,50 @@
 			};
 			name = Release;
 		};
+		049A3A682F6F9E5A007636E5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.TimelessTunesAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimelessTunesApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TimelessTunesApp";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Debug;
+		};
+		049A3A692F6F9E5A007636E5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.raywenderlich.TimelessTunesAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TimelessTunesApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TimelessTunesApp";
+				XROS_DEPLOYMENT_TARGET = 2.5;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -351,6 +470,15 @@
 			buildConfigurations = (
 				044BFE4B2EC5EB550054EC92 /* Debug */,
 				044BFE4C2EC5EB550054EC92 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		049A3A6A2F6F9E5A007636E5 /* Build configuration list for PBXNativeTarget "TimelessTunesAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				049A3A682F6F9E5A007636E5 /* Debug */,
+				049A3A692F6F9E5A007636E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
