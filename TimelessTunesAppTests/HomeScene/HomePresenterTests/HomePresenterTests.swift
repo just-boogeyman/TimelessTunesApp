@@ -17,11 +17,11 @@ final class HomePresenterTests: XCTestCase
 	func test_presenter_didEnterSearch_interactorSearchTracks() {
 		// Given
 		let env = Environment()
-		let presenter = env.makeSut()
+		let sut = env.makeSut()
 		let searchText = "searchText"
 		
 		// When
-		presenter.userDidEnterSearch(searchText: searchText)
+		sut.userDidEnterSearch(searchText: searchText)
 		let result = env.interactor.searchText
 		
 		// Then
@@ -40,10 +40,10 @@ final class HomePresenterTests: XCTestCase
 	func test_presenter_loadHistory_callsInteractor() {
 		// Given
 		let env = Environment()
-		let presenter = env.makeSut()
+		let sut = env.makeSut()
 		
 		// When
-		presenter.loadHistory()
+		sut.loadHistory()
 		let result = env.interactor.didCallLoadHistory
 		
 		// Then
@@ -63,7 +63,7 @@ final class HomePresenterTests: XCTestCase
 	func test_presenter_presentData_updatesView() {
 		// Given
 		let env = Environment()
-		let presenter = env.makeSut()
+		let sut = env.makeSut()
 		let items = [
 			MediaItem(id: 1,
 					  artistName: "Artist",
@@ -73,7 +73,7 @@ final class HomePresenterTests: XCTestCase
 		]
 		
 		// When
-		presenter.presentData(responce: items)
+		sut.presentData(responce: items)
 		let resultCount = env.view.viewModel?.cells.count
 		let resultTrackName = env.view.viewModel?.cells.first?.trackName
 		
@@ -96,7 +96,7 @@ final class HomePresenterTests: XCTestCase
 	func test_presenter_touchHandler_callsInteractorAndRouter() {
 		// Given
 		let env = Environment()
-		let presenter = env.makeSut()
+		let sut = env.makeSut()
 		let items = [
 			MediaItem(id: 1,
 					  artistName: "Artist",
@@ -106,7 +106,7 @@ final class HomePresenterTests: XCTestCase
 		]
 		
 		// When
-		presenter.presentData(responce: items)
+		sut.presentData(responce: items)
 		env.view.touchHandler?(0)
 		
 		let resultSavedTrack = env.interactor.savedTrack?.trackName
